@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M. Masab Munir - Full Stack Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            margin-top: -50px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #667eea;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .profile-placeholder {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info span {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #f8f9fa;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #e9ecef;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #495057;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .experience-item h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .company {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .duration {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .achievements {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .achievements li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .achievements li::before {
+            content: '▶';
+            color: #667eea;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: #f8f9fa;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: #e9ecef;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #495057;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            background: #667eea;
+            transition: background 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #764ba2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-placeholder {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">M. Masab Munir</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in">M. Masab Munir</h1>
+            <p class="subtitle fade-in">Full Stack Developer</p>
+            <p class="description fade-in">
+                Passionate Full Stack Developer with 4 years of experience crafting robust web applications. 
+                Specialized in JavaScript, React.js, Angular, Node.js, and modern development practices.
+            </p>
+            <a href="#contact" class="btn fade-in">Get In Touch</a>
+        </div>
+    </section>
+
+    <main>
+        <section id="about" class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="profile-placeholder">MM</div>
+                </div>
+                <div class="about-text">
+                    <p>
+                        I am a dedicated Full Stack Developer with 4 years of experience in software development, 
+                        specializing in JavaScript and the MEAN stack. My journey in computer science has been 
+                        driven by passion and determination to achieve excellence in every project.
+                    </p>
+                    <p>
+                        Currently working with cutting-edge technologies including Angular 16/17, standalone components, 
+                        signals for state management, and Azure integration. I have extensive experience working with 
+                        US-based clients, particularly in developing background search services handling millions of users.
+                    </p>
+                    <p>
+                        My expertise spans across the entire development lifecycle, from database design with MongoDB 
+                        and SQL to implementing robust authentication with Auth0, and ensuring code quality through 
+                        comprehensive testing with Jasmine and SonarQube analysis.
+                    </p>
+                    <div class="contact-info">
+                        <div><span>Location:</span> Islamabad, Pakistan</div>
+                        <div><span>Email:</span> masabk214@gmail.com</div>
+                        <div><span>Phone:</span> +92 312 772 7452</div>
+                        <div><span>Education:</span> BSIT from Arid University Rawalpindi</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frontend Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Angular 16/17</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">PrimeNG</span>
+                            <span class="skill-tag">Redux</span>
+                            <span class="skill-tag">AJAX</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Backend Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express.js</span>
+                            <span class="skill-tag">.NET Core 6</span>
+                            <span class="skill-tag">ASP.NET Core</span>
+                            <span class="skill-tag">RESTful APIs</span>
+                            <span class="skill-tag">SOAP APIs</span>
+                            <span class="skill-tag">Web Services</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Databases</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">SQL Server</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Oracle</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Cloud & DevOps</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Azure DevOps</span>
+                            <span class="skill-tag">Azure Insights</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">CI/CD</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Testing & Quality</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Jasmine</span>
+                            <span class="skill-tag">Unit Testing</span>
+                            <span class="skill-tag">TDD</span>
+                            <span class="skill-tag">Integration Testing</span>
+                            <span class="skill-tag">SonarQube</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Specialized</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Auth0</span>
+                            <span class="skill-tag">Angular Signals</span>
+                            <span class="skill-tag">Standalone Components</span>
+                            <span class="skill-tag">NX Workspace</span>
+                            <span class="skill-tag">NFT Smart Contracts</span>
+                            <span class="skill-tag">Ethereum</span>
+                            <span class="skill-tag">Metamask</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="container">
+            <h2>Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <h3>Full Stack Developer</h3>
+                    <div class="company">Cloudtek</div>
+                    <div class="duration">January 2023 - July 2025</div>
+                    <ul class="achievements">
+                        <li>Developed MEAN Stack applications for US-based background search service handling millions of users</li>
+                        <li>Implemented Angular 16/17 standalone components with efficient signal-based communication</li>
+                        <li>Integrated Azure DevOps and Server Insights for monitoring and deployment</li>
+                        <li>Built database-driven UI using Atomic Design principles for reusable components</li>
+                        <li>Created complex MongoDB aggregation queries for user data extraction</li>
+                        <li>Implemented Auth0 authentication with functional interceptors for secure data transmission</li>
+                        <li>Maintained high code quality using SonarQube and comprehensive Jasmine testing</li>
+                        <li>Successfully migrated Angular 16 to Angular 17 with minimal downtime</li>
+                        <li>Utilized PrimeNG components for responsive, cross-browser compatible designs</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>MEAN/MERN Stack Developer</h3>
+                    <div class="company">Pronet (PVT) LTD.</div>
+                    <div class="duration">January 2022 - December 2023</div>
+                    <ul class="achievements">
+                        <li>Analyzed business requirements and translated them into technical specifications</li>
+                        <li>Developed web applications using MongoDB, Express, React.js/Redux, and Node.js</li>
+                        <li>Maintained relational databases including SQL and MySQL</li>
+                        <li>Worked extensively with RESTful and SOAP APIs</li>
+                        <li>Dockerized applications for improved containerization and scalability</li>
+                        <li>Implemented TDD, unit testing, and integration testing practices</li>
+                        <li>Integrated NFT smart contracts for Ethereum currency handling with Metamask</li>
+                        <li>Designed system specifications and programming standards</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Angular Developer</h3>
+                    <div class="company">Digital Pakistan Lab (NUST EME)</div>
+                    <div class="duration">March 2021 - December 2021</div>
+                    <ul class="achievements">
+                        <li>Developed "Meethi Zindagi" - a comprehensive polio patient management system</li>
+                        <li>Implemented automated appointment scheduling and SMS reminder systems</li>
+                        <li>Built call arrangement functionality between staff and patients' relatives</li>
+                        <li>Worked with Angular, Node.js, Express.js, and SQL databases</li>
+                        <li>Maintained relational databases including SQL, MySQL, and Oracle</li>
+                        <li>Applied Test-Driven Development and comprehensive testing practices</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>US Background Search Platform</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>A comprehensive background search service for US citizens handling millions of users with advanced filtering and data extraction capabilities.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Angular 16/17</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Azure</span>
+                                <span class="tech-tag">Auth0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>NFT Smart Contract Integration</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>Integrated NFT smart contracts for Ethereum currency handling using Metamask e-wallet with secure transaction processing.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Ethereum</span>
+                                <span class="tech-tag">Smart Contracts</span>
+                                <span class="tech-tag">Metamask</span>
+                                <span class="tech-tag">Web3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Meethi Zindagi - Polio Management System</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>A web-based application for managing polio patient data with automated scheduling, SMS reminders, and communication systems.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Angular</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">SQL</span>
+                                <span class="tech-tag">SMS API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2>Let's Work Together</h2>
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">
+                    I'm always interested in new opportunities and exciting projects. 
+                    Whether you're looking for a full-stack developer or need consultation on your next big idea, 
+                    let's connect and discuss how I can help bring your vision to life.
+                </p>
+                <div class="footer-content">
+                    <div style="display: flex; flex-direction: column; gap: 1rem; color: #333;">
+                        <div><strong>Email:</strong> masabk214@gmail.com</div>
+                        <div><strong>Phone:</strong> +92 312 772 7452</div>
+                        <div><strong>Location:</strong> Islamabad, Pakistan</div>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="mailto:masabk214@gmail.com" class="btn">Send Email</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 M. Masab Munir. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">Full Stack Developer | MEAN/MERN Specialist | Angular Expert</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple scroll animation
+        window.addEventListener('scroll', () => {
+            const elements = document.querySelectorAll('.skill-category, .experience-item, .project-card');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialize animation styles
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.skill-category, .experience-item, .project-card');
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'all 0.6s ease-out';
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
